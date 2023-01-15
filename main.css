@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+	font-family: 'Raleway', sans-serif;
+}
+:root {
+	--main-bg-color: rgba(255, 255, 255, 0.55);
+	--white-color: #fff;
+	--body-bg-color: -webkit-linear-gradient(25deg,rgb(228, 181, 189),rgb(177, 198, 218),rgb(158, 198, 168),rgb(145, 195, 193));
+}
+body {
+    background: var(--body-bg-color);
+	background-size: cover;
+}
+.container {
+    max-width: 1200px;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	color: var(--white-color);
+}
+.container__cards {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	grid-template-areas: 
+		"greeting greeting photo photo"
+		"about about photo photo"
+		"portfolio portfolio download download"
+		"portfolio portfolio contact contact";
+}
+.card {
+	display: flex;
+    justify-content: center;
+	align-items: center;
+	background-color: var(--white-color);
+	border-radius: 10px;
+	box-shadow: 10px 8px 10px rgba(50, 50, 50, 0.2);
+	position: relative;
+	transition: 1s;
+	text-align: center;
+	font-size: 120%;
+}
+.card:hover {
+	scale: 1.03;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+.card__greeting {
+	grid-area: greeting;
+    background: -webkit-linear-gradient(60deg,rgba(146, 163, 215, 0.6),rgba(112, 201, 165, 0.6));
+}
+.card__about {
+	grid-area: about;
+	background: -webkit-linear-gradient(160deg,rgba(146, 163, 215, 0.6),rgba(112, 201, 165, 0.6));
+}
+.card__photo {
+	grid-area: photo;
+}
+
+.card__portfolio {
+	grid-area: portfolio;
+    background: -webkit-linear-gradient(90deg,rgb(233, 124, 184),rgb(170, 195, 90));
+}
+.card__portfolio, .card__about {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	padding: 25px;
+}
+
+.card__download {
+	grid-area: download;
+	background: -webkit-linear-gradient(160deg,rgba(146, 163, 215, 0.6),rgba(112, 201, 165, 0.6));
+}
+.card__contact {
+	grid-area: contact;
+	background: -webkit-linear-gradient(60deg,rgba(146, 163, 215, 0.6),rgba(112, 201, 165, 0.6));
+	display: grid;
+	gap: 5px;
+	grid-template-columns: 1fr 2fr;
+	text-align: left;
+	padding: 25px;
+}
+.card__contact a {
+	font-weight: 400;
+}
+a {
+	text-decoration: none;
+	font-weight: 600;
+	cursor: pointer;
+	color: var(--white-color);
+}
+.card__greeting p {
+	font-weight: 600;
+	font-size: 170%;
+}
+.card__photo {
+	background-image: url('./assets/img/bg-img.jpeg');
+	background-size: 100%, 100%;
+}
+.menu-btn{
+	display: flex;
+	align-items: center;
+	position: absolute;
+	top: 3%;
+	right: 2%;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	z-index: 1;
+  }
+  .menu-btn > span,
+  .menu-btn > span::before,
+  .menu-btn > span::after {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 5px;
+	background-color: var(--white-color);
+	transition-duration: .25s;
+  }
+  .menu-btn > span::before {
+	content: '';
+	top: -10px;
+  }
+  .menu-btn > span::after {
+	content: '';
+	top: 10px;
+  }
+
+  .menubox{
+	display: block;
+	position: fixed;
+	visibility: hidden;
+	top: 0;
+	left: 100%;
+	width: 25%;
+	height: 100%;
+	margin: 0;
+	padding: 80px 0;
+	list-style: none;
+	background-color: var(--main-bg-color);
+	box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+	transition-duration: .25s;
+  }
+
+  #menu-toggle{
+	opacity: 0;
+  }
+
+  #menu-toggle:checked ~ .menu-btn > span{
+	transform: rotate(45deg);
+  }
+  #menu-toggle:checked ~ .menu-btn > span::before{
+	top: 0;
+	transform: rotate(0);
+  }
+  #menu-toggle:checked ~ .menu-btn > span::after{
+	top: 0;
+	transform: rotate(90deg);
+  }
+  #menu-toggle:checked ~ .menubox{
+	visibility: visible;
+	left: 75%;
+  }
+  .menu-item {
+	display: block;
+	padding: 12px 24px;
+	color: rgb(33, 94, 83);
+	font-size: 20px;
+	font-weight: 600;
+	text-decoration: none;
+	transition-duration: .25s;
+  }
+  .menu-item:hover {
+	background-color: rgba(237, 234, 234, 0.7);
+  }
+  
+
+  @media (max-width: 1200px) {
+	.container {
+		max-width: 970px;
+	}
+	.container__cards {
+		gap: 10px;
+	}
+  }
+  @media (max-width: 992px) {
+	.container {
+		max-width: 750px;
+	}
+	.container__cards {
+		gap: 5px;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(8, 1fr);
+		grid-template-areas: 
+			"greeting greeting" 
+			"photo photo"
+			"photo photo"
+			"about about"
+			"portfolio portfolio"
+			"portfolio portfolio"
+			"download download"
+            "contact contact";
+	}
+	.card__portfolio, .card__about {
+		padding: 15px;
+	}
+  }
+  @media (max-width: 767px) {
+	.container {
+		max-width: none;
+	}
+	.card__contact {
+		grid-template-columns: 1fr;
+		text-align: center;
+		padding: 15px;
+	}
+  }
